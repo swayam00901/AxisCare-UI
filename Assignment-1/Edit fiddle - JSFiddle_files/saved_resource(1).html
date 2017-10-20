@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)https://fiddle.jshell.net/_display/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+
+  
+  
+
+  
+  
+    <script type="text/javascript" src="./babel.js.download"></script>
+  
+  
+
+  
+
+  <script type="text/javascript" src="./dummy.js.download"></script>
+
+  
+
+  
+
+  
+
+  
+    <link rel="stylesheet" type="text/css" href="./result-light.css">
+  
+
+  
+
+  <style type="text/css">
+    body {
+  font-family: sans-serif;
+  font-size: 14px;
+  line-height: 1.3em;
+}
+  </style>
+
+  <title></title>
+
+  
+    
+
+
+  <script type="text/babel" data-presets="es2017,react,stage-0" data-plugins="transform-decorators-legacy">
+
+
+
+
+
+function transform(data) {
+  // TODO implement me
+  // NOTE: do not hardcode the group name. Assume the data structure could 
+  // have any number of groups.
+  var expected = [];
+  
+  for (var key in data) {
+   if (data.hasOwnProperty(key)) {
+      var obj = data[key];
+      var tempObj = {};
+     
+     
+      for( j = 0 ; j < Object.keys(data[key]).length ; j++ )
+      {
+      obj = data[key];
+      var k = Object.keys(data[key])[j];
+       alert( Object.keys(data[key]) + "  "+key +" -- "+k+"---"+obj[k]);
+        for (var prop in obj[k]) {
+ alert(prop +" "+key+"**" +k);
+           if (obj[k].hasOwnProperty(prop)) {
+
+               if(prop =='name')
+               {
+                tempObj['label'] = obj[k][prop];
+             tempObj['group'] = key;
+           //  alert(prop +" "+key+" "+k);
+               }
+                 
+               if(prop =='id')
+               {
+                   tempObj['value'] = obj[k][prop]; 
+                         //   alert(prop +" "+key+" "+k);
+
+               }
+                  
+             // alert(prop + " = " + obj[prop] +" -- ");
+           }
+        }
+      }
+       //   alert(" -- "+ tempObj['label']+" -- "+tempObj['group'] +" --//"+tempObj['value']);
+      expected.push(tempObj);
+                 tempObj = {};
+
+   }
+}
+for (var i = 0; i < expected.length; i++) {
+  // alert(Object.keys(expected[i]));
+    //Do something
+}
+
+}
+
+
+const start = {
+  Clients: {
+    171: { id: 171, name: 'John Smith', active: false },
+    172: { id: 172, name: 'Jacob Jacobson', active: true },
+    1441: { id: 1441, name: 'Eric Ericsson', active: true },
+  },
+  Caregivers: {
+    1: { id: 1, name: 'John Johnson', active: true },
+    37: { id: 37, name: 'James Jameson', active: false },
+    15: { id: 15, name: 'Aaron Aaronson', active: true },
+  },
+  Doctors: {
+    1147: { id: 1147, name: 'Doc Docson', active: true },
+  },
+  Hospitals: {
+    115: { id: 115, active: false, name: "St. Mary's" },
+  },
+  Applicants: {
+    17345: { id: 17345, name: 'Bob Bobson', active: true },
+    17346: { id: 17346, name: 'Jeff Jeffson', active: false },
+    17347: { id: 17347, name: 'Frank Frankson', active: true },
+    17348: { id: 17348, name: 'Bill Billson', active: true },
+  },
+};
+
+// Notice that the entries are sorted by group first, then label.
+// Notice also that active: false records are excluded.
+const expected = [
+  { label: 'Bill Billson', value: 17348, group: 'Applicants' },
+  { label: 'Bob Bobson', value: 17345, group: 'Applicants' },
+  { label: 'Frank Frankson', value: 17347, group: 'Applicants' },
+  { label: 'Aaron Aaronson', value: 15, group: 'Caregivers' },
+  { label: 'John Johnson', value: 1, group: 'Caregivers' },
+  { label: 'Eric Ericsson', value: 1441, group: 'Clients' },
+  { label: 'Jacob Jacobson', value: 172, group: 'Clients' },
+  { label: 'Doc Docson', value: 1147, group: 'Doctors' },
+];
+
+
+Array.prototype.forEach = function () {
+  throw new Error('Array.forEach is not allowed!');
+};
+
+console.clear();
+const actual = transform(start);
+if (deepEqual(actual, expected)) {
+  console.log('pass!');
+} else {
+  console.error('fail...');
+  console.log('expected', expected);
+  console.log('actual', actual);
+}
+
+function deepEqual(a, b) {
+  try {
+  	if (!Array.isArray(a) || !Array.isArray(b)) return false;
+  	return a.length === b.length && a.every((v, i) =>
+    	b[i].label === v.label && 
+      b[i].value === v.value && 
+      b[i].group === v.group
+    );
+  } catch (err) {
+    return false;
+  }
+}
+
+
+</script>
+
+  
+<script>
+
+function transform(data) {
+  // TODO implement me
+  // NOTE: do not hardcode the group name. Assume the data structure could 
+  // have any number of groups.
+  var expected = [];
+
+  for (var key in data) {
+    if (data.hasOwnProperty(key)) {
+      var obj = data[key];
+      var tempObj = {};
+
+      for (j = 0; j < Object.keys(data[key]).length; j++) {
+        obj = data[key];
+        var k = Object.keys(data[key])[j];
+        alert(Object.keys(data[key]) + "  " + key + " -- " + k + "---" + obj[k]);
+        for (var prop in obj[k]) {
+          alert(prop + " " + key + "**" + k);
+          if (obj[k].hasOwnProperty(prop)) {
+
+            if (prop == 'name') {
+              tempObj['label'] = obj[k][prop];
+              tempObj['group'] = key;
+              //  alert(prop +" "+key+" "+k);
+            }
+
+            if (prop == 'id') {
+              tempObj['value'] = obj[k][prop];
+              //   alert(prop +" "+key+" "+k);
+            }
+
+            // alert(prop + " = " + obj[prop] +" -- ");
+          }
+        }
+      }
+      //   alert(" -- "+ tempObj['label']+" -- "+tempObj['group'] +" --//"+tempObj['value']);
+      expected.push(tempObj);
+      tempObj = {};
+    }
+  }
+  for (var i = 0; i < expected.length; i++) {
+    // alert(Object.keys(expected[i]));
+    //Do something
+  }
+}
+
+const start = {
+  Clients: {
+    171: { id: 171, name: 'John Smith', active: false },
+    172: { id: 172, name: 'Jacob Jacobson', active: true },
+    1441: { id: 1441, name: 'Eric Ericsson', active: true }
+  },
+  Caregivers: {
+    1: { id: 1, name: 'John Johnson', active: true },
+    37: { id: 37, name: 'James Jameson', active: false },
+    15: { id: 15, name: 'Aaron Aaronson', active: true }
+  },
+  Doctors: {
+    1147: { id: 1147, name: 'Doc Docson', active: true }
+  },
+  Hospitals: {
+    115: { id: 115, active: false, name: "St. Mary's" }
+  },
+  Applicants: {
+    17345: { id: 17345, name: 'Bob Bobson', active: true },
+    17346: { id: 17346, name: 'Jeff Jeffson', active: false },
+    17347: { id: 17347, name: 'Frank Frankson', active: true },
+    17348: { id: 17348, name: 'Bill Billson', active: true }
+  }
+};
+
+// Notice that the entries are sorted by group first, then label.
+// Notice also that active: false records are excluded.
+const expected = [{ label: 'Bill Billson', value: 17348, group: 'Applicants' }, { label: 'Bob Bobson', value: 17345, group: 'Applicants' }, { label: 'Frank Frankson', value: 17347, group: 'Applicants' }, { label: 'Aaron Aaronson', value: 15, group: 'Caregivers' }, { label: 'John Johnson', value: 1, group: 'Caregivers' }, { label: 'Eric Ericsson', value: 1441, group: 'Clients' }, { label: 'Jacob Jacobson', value: 172, group: 'Clients' }, { label: 'Doc Docson', value: 1147, group: 'Doctors' }];
+
+Array.prototype.forEach = function () {
+  throw new Error('Array.forEach is not allowed!');
+};
+
+console.clear();
+const actual = transform(start);
+if (deepEqual(actual, expected)) {
+  console.log('pass!');
+} else {
+  console.error('fail...');
+  console.log('expected', expected);
+  console.log('actual', actual);
+}
+
+function deepEqual(a, b) {
+  try {
+    if (!Array.isArray(a) || !Array.isArray(b)) return false;
+    return a.length === b.length && a.every((v, i) => b[i].label === v.label && b[i].value === v.value && b[i].group === v.group);
+  } catch (err) {
+    return false;
+  }
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIklubGluZSBCYWJlbCBzY3JpcHQiXSwibmFtZXMiOlsidHJhbnNmb3JtIiwiZGF0YSIsImV4cGVjdGVkIiwia2V5IiwiaGFzT3duUHJvcGVydHkiLCJvYmoiLCJ0ZW1wT2JqIiwiaiIsIk9iamVjdCIsImtleXMiLCJsZW5ndGgiLCJrIiwiYWxlcnQiLCJwcm9wIiwicHVzaCIsImkiLCJzdGFydCIsIkNsaWVudHMiLCJpZCIsIm5hbWUiLCJhY3RpdmUiLCJDYXJlZ2l2ZXJzIiwiRG9jdG9ycyIsIkhvc3BpdGFscyIsIkFwcGxpY2FudHMiLCJsYWJlbCIsInZhbHVlIiwiZ3JvdXAiLCJBcnJheSIsInByb3RvdHlwZSIsImZvckVhY2giLCJFcnJvciIsImNvbnNvbGUiLCJjbGVhciIsImFjdHVhbCIsImRlZXBFcXVhbCIsImxvZyIsImVycm9yIiwiYSIsImIiLCJpc0FycmF5IiwiZXZlcnkiLCJ2IiwiZXJyIl0sIm1hcHBpbmdzIjoiOztBQU1BLFNBQVNBLFNBQVQsQ0FBbUJDLElBQW5CLEVBQXlCO0FBQ3ZCO0FBQ0E7QUFDQTtBQUNBLE1BQUlDLFdBQVcsRUFBZjs7QUFFQSxPQUFLLElBQUlDLEdBQVQsSUFBZ0JGLElBQWhCLEVBQXNCO0FBQ3JCLFFBQUlBLEtBQUtHLGNBQUwsQ0FBb0JELEdBQXBCLENBQUosRUFBOEI7QUFDM0IsVUFBSUUsTUFBTUosS0FBS0UsR0FBTCxDQUFWO0FBQ0EsVUFBSUcsVUFBVSxFQUFkOztBQUdBLFdBQUtDLElBQUksQ0FBVCxFQUFhQSxJQUFJQyxPQUFPQyxJQUFQLENBQVlSLEtBQUtFLEdBQUwsQ0FBWixFQUF1Qk8sTUFBeEMsRUFBaURILEdBQWpELEVBQ0E7QUFDQUYsY0FBTUosS0FBS0UsR0FBTCxDQUFOO0FBQ0EsWUFBSVEsSUFBSUgsT0FBT0MsSUFBUCxDQUFZUixLQUFLRSxHQUFMLENBQVosRUFBdUJJLENBQXZCLENBQVI7QUFDQ0ssY0FBT0osT0FBT0MsSUFBUCxDQUFZUixLQUFLRSxHQUFMLENBQVosSUFBeUIsSUFB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QixLQUFqQixJQUNDYyxFQUFFeEIsQ0FBRixFQUFLVyxLQUFMLEtBQWVnQixFQUFFaEIsS0FEbEIsSUFFQ2EsRUFBRXhCLENBQUYsRUFBS1ksS0FBTCxLQUFlZSxFQUFFZixLQUhZLENBQWhDO0FBS0EsR0FQRCxDQU9FLE9BQU9nQixHQUFQLEVBQVk7QUFDWixXQUFPLEtBQVA7QUFDRDtBQUNGIiwiZmlsZSI6IklubGluZSBCYWJlbCBzY3JpcHQiLCJzb3VyY2VzQ29udGVudCI6WyJcblxuXG5cblxuXG5mdW5jdGlvbiB0cmFuc2Zvcm0oZGF0YSkge1xuICAvLyBUT0RPIGltcGxlbWVudCBtZVxuICAvLyBOT1RFOiBkbyBub3QgaGFyZGNvZGUgdGhlIGdyb3VwIG5hbWUuIEFzc3VtZSB0aGUgZGF0YSBzdHJ1Y3R1cmUgY291bGQgXG4gIC8vIGhhdmUgYW55IG51bWJlciBvZiBncm91cHMuXG4gIHZhciBleHBlY3RlZCA9IFtdO1xuICBcbiAgZm9yICh2YXIga2V5IGluIGRhdGEpIHtcbiAgIGlmIChkYXRhLmhhc093blByb3BlcnR5KGtleSkpIHtcbiAgICAgIHZhciBvYmogPSBkYXRhW2tleV07XG4gICAgICB2YXIgdGVtcE9iaiA9IHt9O1xuICAgICBcbiAgICAgXG4gICAgICBmb3IoIGogPSAwIDsgaiA8IE9iamVjdC5rZXlzKGRhdGFba2V5XSkubGVuZ3RoIDsgaisrIClcbiAgICAgIHtcbiAgICAgIG9iaiA9IGRhdGFba2V5XTtcbiAgICAgIHZhciBrID0gT2JqZWN0LmtleXMoZGF0YVtrZXldKVtqXTtcbiAgICAgICBhbGVydCggT2JqZWN0LmtleXMoZGF0YVtrZXldKSArIFwiICBcIitrZXkgK1wiIC0tIFwiK2srXCItLS1cIitvYmpba10pO1xuICAgICAgICBmb3IgKHZhciBwcm9wIGluIG9ialtrXSkge1xuIGFsZXJ0KHByb3AgK1wiIFwiK2tleStcIioqXCIgK2spO1xuICAgICAgICAgICBpZiAob2JqW2tdLmhhc093blByb3BlcnR5KHByb3ApKSB7XG5cbiAgICAgICAgICAgICAgIGlmKHByb3AgPT0nbmFtZScpXG4gICAgICAgICAgICAgICB7XG4gICAgICAgICAgICAgICAgdGVtcE9ialsnbGFiZWwnXSA9IG9ialtrXVtwcm9wXTtcbiAgICAgICAgICAgICB0ZW1wT2JqWydncm91cCddID0ga2V5O1xuICAgICAgICAgICAvLyAgYWxlcnQocHJvcCArXCIgXCIra2V5K1wiIFwiK2spO1xuICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAgIGlmKHByb3AgPT0naWQnKVxuICAgICAgICAgICAgICAge1xuICAgICAgICAgICAgICAgICAgIHRlbXBPYmpbJ3ZhbHVlJ10gPSBvYmpba11bcHJvcF07IFxuICAgICAgICAgICAgICAgICAgICAgICAgIC8vICAgYWxlcnQocHJvcCArXCIgXCIra2V5K1wiIFwiK2spO1xuXG4gICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAvLyBhbGVydChwcm9wICsgXCIgPSBcIiArIG9ialtwcm9wXSArXCIgLS0gXCIpO1xuICAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cbiAgICAgICAvLyAgIGFsZXJ0KFwiIC0tIFwiKyB0ZW1wT2JqWydsYWJlbCddK1wiIC0tIFwiK3RlbXBPYmpbJ2dyb3VwJ10gK1wiIC0tLy9cIit0ZW1wT2JqWyd2YWx1ZSddKTtcbiAgICAgIGV4cGVjdGVkLnB1c2godGVtcE9iaik7XG4gICAgICAgICAgICAgICAgIHRlbXBPYmogPSB7fTtcblxuICAgfVxufVxuZm9yICh2YXIgaSA9IDA7IGkgPCBleHBlY3RlZC5sZW5ndGg7IGkrKykge1xuICAvLyBhbGVydChPYmplY3Qua2V5cyhleHBlY3RlZFtpXSkpO1xuICAgIC8vRG8gc29tZXRoaW5nXG59XG5cbn1cblxuXG5jb25zdCBzdGFydCA9IHtcbiAgQ2xpZW50czoge1xuICAgIDE3MTogeyBpZDogMTcxLCBuYW1lOiAnSm9obiBTbWl0aCcsIGFjdGl2ZTogZmFsc2UgfSxcbiAgICAxNzI6IHsgaWQ6IDE3MiwgbmFtZTogJ0phY29iIEphY29ic29uJywgYWN0aXZlOiB0cnVlIH0sXG4gICAgMTQ0MTogeyBpZDogMTQ0MSwgbmFtZTogJ0VyaWMgRXJpY3Nzb24nLCBhY3RpdmU6IHRydWUgfSxcbiAgfSxcbiAgQ2FyZWdpdmVyczoge1xuICAgIDE6IHsgaWQ6IDEsIG5hbWU6ICdKb2huIEpvaG5zb24nLCBhY3RpdmU6IHRydWUgfSxcbiAgICAzNzogeyBpZDogMzcsIG5hbWU6ICdKYW1lcyBKYW1lc29uJywgYWN0aXZlOiBmYWxzZSB9LFxuICAgIDE1OiB7IGlkOiAxNSwgbmFtZTogJ0Fhcm9uIEFhcm9uc29uJywgYWN0aXZlOiB0cnVlIH0sXG4gIH0sXG4gIERvY3RvcnM6IHtcbiAgICAxMTQ3OiB7IGlkOiAxMTQ3LCBuYW1lOiAnRG9jIERvY3NvbicsIGFjdGl2ZTogdHJ1ZSB9LFxuICB9LFxuICBIb3NwaXRhbHM6IHtcbiAgICAxMTU6IHsgaWQ6IDExNSwgYWN0aXZlOiBmYWxzZSwgbmFtZTogXCJTdC4gTWFyeSdzXCIgfSxcbiAgfSxcbiAgQXBwbGljYW50czoge1xuICAgIDE3MzQ1OiB7IGlkOiAxNzM0NSwgbmFtZTogJ0JvYiBCb2Jzb24nLCBhY3RpdmU6IHRydWUgfSxcbiAgICAxNzM0NjogeyBpZDogMTczNDYsIG5hbWU6ICdKZWZmIEplZmZzb24nLCBhY3RpdmU6IGZhbHNlIH0sXG4gICAgMTczNDc6IHsgaWQ6IDE3MzQ3LCBuYW1lOiAnRnJhbmsgRnJhbmtzb24nLCBhY3RpdmU6IHRydWUgfSxcbiAgICAxNzM0ODogeyBpZDogMTczNDgsIG5hbWU6ICdCaWxsIEJpbGxzb24nLCBhY3RpdmU6IHRydWUgfSxcbiAgfSxcbn07XG5cbi8vIE5vdGljZSB0aGF0IHRoZSBlbnRyaWVzIGFyZSBzb3J0ZWQgYnkgZ3JvdXAgZmlyc3QsIHRoZW4gbGFiZWwuXG4vLyBOb3RpY2UgYWxzbyB0aGF0IGFjdGl2ZTogZmFsc2UgcmVjb3JkcyBhcmUgZXhjbHVkZWQuXG5jb25zdCBleHBlY3RlZCA9IFtcbiAgeyBsYWJlbDogJ0JpbGwgQmlsbHNvbicsIHZhbHVlOiAxNzM0OCwgZ3JvdXA6ICdBcHBsaWNhbnRzJyB9LFxuICB7IGxhYmVsOiAnQm9iIEJvYnNvbicsIHZhbHVlOiAxNzM0NSwgZ3JvdXA6ICdBcHBsaWNhbnRzJyB9LFxuICB7IGxhYmVsOiAnRnJhbmsgRnJhbmtzb24nLCB2YWx1ZTogMTczNDcsIGdyb3VwOiAnQXBwbGljYW50cycgfSxcbiAgeyBsYWJlbDogJ0Fhcm9uIEFhcm9uc29uJywgdmFsdWU6IDE1LCBncm91cDogJ0NhcmVnaXZlcnMnIH0sXG4gIHsgbGFiZWw6ICdKb2huIEpvaG5zb24nLCB2YWx1ZTogMSwgZ3JvdXA6ICdDYXJlZ2l2ZXJzJyB9LFxuICB7IGxhYmVsOiAnRXJpYyBFcmljc3NvbicsIHZhbHVlOiAxNDQxLCBncm91cDogJ0NsaWVudHMnIH0sXG4gIHsgbGFiZWw6ICdKYWNvYiBKYWNvYnNvbicsIHZhbHVlOiAxNzIsIGdyb3VwOiAnQ2xpZW50cycgfSxcbiAgeyBsYWJlbDogJ0RvYyBEb2Nzb24nLCB2YWx1ZTogMTE0NywgZ3JvdXA6ICdEb2N0b3JzJyB9LFxuXTtcblxuXG5BcnJheS5wcm90b3R5cGUuZm9yRWFjaCA9IGZ1bmN0aW9uICgpIHtcbiAgdGhyb3cgbmV3IEVycm9yKCdBcnJheS5mb3JFYWNoIGlzIG5vdCBhbGxvd2VkIScpO1xufTtcblxuY29uc29sZS5jbGVhcigpO1xuY29uc3QgYWN0dWFsID0gdHJhbnNmb3JtKHN0YXJ0KTtcbmlmIChkZWVwRXF1YWwoYWN0dWFsLCBleHBlY3RlZCkpIHtcbiAgY29uc29sZS5sb2coJ3Bhc3MhJyk7XG59IGVsc2Uge1xuICBjb25zb2xlLmVycm9yKCdmYWlsLi4uJyk7XG4gIGNvbnNvbGUubG9nKCdleHBlY3RlZCcsIGV4cGVjdGVkKTtcbiAgY29uc29sZS5sb2coJ2FjdHVhbCcsIGFjdHVhbCk7XG59XG5cbmZ1bmN0aW9uIGRlZXBFcXVhbChhLCBiKSB7XG4gIHRyeSB7XG4gIFx0aWYgKCFBcnJheS5pc0FycmF5KGEpIHx8ICFBcnJheS5pc0FycmF5KGIpKSByZXR1cm4gZmFsc2U7XG4gIFx0cmV0dXJuIGEubGVuZ3RoID09PSBiLmxlbmd0aCAmJiBhLmV2ZXJ5KCh2LCBpKSA9PlxuICAgIFx0YltpXS5sYWJlbCA9PT0gdi5sYWJlbCAmJiBcbiAgICAgIGJbaV0udmFsdWUgPT09IHYudmFsdWUgJiYgXG4gICAgICBiW2ldLmdyb3VwID09PSB2Lmdyb3VwXG4gICAgKTtcbiAgfSBjYXRjaCAoZXJyKSB7XG4gICAgcmV0dXJuIGZhbHNlO1xuICB9XG59XG5cblxuIl19</script></head>
+
+<body>
+  <p>
+Write a function that transforms the <code>start</code> data structure into the <code>expected</code> data structure. Your function should not modify the original data structure -- instead, it should return a new structure.
+</p>
+
+<p>
+Your solution will be judged using the following criteria:
+</p><ul>
+<li>correctness</li>
+<li>efficiency</li>
+<li>code quality</li>
+<li>code size</li>
+<li>copypasta (we only want to see YOUR code!)</li>
+</ul>
+<p></p>
+
+<p>
+We recommend spending 30 minutes on this problem.
+</p>
+
+<p>
+<b>Bonus:</b> Use only methods from <code>Object</code> and <code>Array</code> instead of <code>for</code> or <code>while</code> loops. <code>Array.forEach</code> is not allowed.
+</p>
+  
+  <script>
+  // tell the embed parent frame the height of the content
+  if (window.parent && window.parent.parent){
+    window.parent.parent.postMessage(["resultsFrame", {
+      height: document.body.getBoundingClientRect().height,
+      slug: "None"
+    }], "*")
+  }
+</script>
+
+
+
+
+
+</body></html>

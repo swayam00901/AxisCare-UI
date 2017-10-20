@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)https://fiddle.jshell.net/_display/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+
+  
+  
+
+  
+  
+    <script type="text/javascript" src="./babel.js.download"></script>
+  
+  
+
+  
+
+  <script type="text/javascript" src="./dummy.js.download"></script>
+
+  
+
+  
+
+  
+
+  
+    <link rel="stylesheet" type="text/css" href="./result-light.css">
+  
+
+  
+
+  <style type="text/css">
+    body {
+  font-family: sans-serif;
+  font-size: 14px;
+  line-height: 1.3em;
+}
+  </style>
+
+  <title></title>
+
+  
+    
+
+
+  <script type="text/babel" data-presets="es2017,react,stage-0" data-plugins="transform-decorators-legacy">
+
+
+
+
+
+function transform(data) {
+  // TODO implement me
+  // NOTE: do not hardcode the group name. Assume the data structure could 
+  // have any number of groups.
+  var expected = [];
+  
+  for (var key in data) {
+   if (data.hasOwnProperty(key)) {
+      var obj = data[key];
+      var tempObj = {};
+     
+     
+      for( j = 0 ; j < Object.keys(data[key]).length ; j++ )
+      {
+      obj = data[key];
+      var k = Object.keys(data[key])[j];
+        for (var prop in obj[k]) {
+           if (obj[k].hasOwnProperty(prop)) {
+
+               if(prop =='name')
+               {
+                tempObj['label'] = obj[k][prop];
+             tempObj['group'] = key;
+         
+               }
+                 
+               if(prop =='id')
+               {
+                   tempObj['value'] = obj[k][prop]; 
+                        
+
+               }
+                  
+             
+           }
+        }
+      }
+     
+      expected.push(tempObj);
+                 tempObj = {};
+
+   }
+}
+
+
+}// have any number of groups.
+
+
+
+const start = {
+  Clients: {
+    171: { id: 171, name: 'John Smith', active: false },
+    172: { id: 172, name: 'Jacob Jacobson', active: true },
+    1441: { id: 1441, name: 'Eric Ericsson', active: true },
+  },
+  Caregivers: {
+    1: { id: 1, name: 'John Johnson', active: true },
+    37: { id: 37, name: 'James Jameson', active: false },
+    15: { id: 15, name: 'Aaron Aaronson', active: true },
+  },
+  Doctors: {
+    1147: { id: 1147, name: 'Doc Docson', active: true },
+  },
+  Hospitals: {
+    115: { id: 115, active: false, name: "St. Mary's" },
+  },
+  Applicants: {
+    17345: { id: 17345, name: 'Bob Bobson', active: true },
+    17346: { id: 17346, name: 'Jeff Jeffson', active: false },
+    17347: { id: 17347, name: 'Frank Frankson', active: true },
+    17348: { id: 17348, name: 'Bill Billson', active: true },
+  },
+};
+
+// Notice that the entries are sorted by group first, then label.
+// Notice also that active: false records are excluded.
+const expected = [
+  { label: 'Bill Billson', value: 17348, group: 'Applicants' },
+  { label: 'Bob Bobson', value: 17345, group: 'Applicants' },
+  { label: 'Frank Frankson', value: 17347, group: 'Applicants' },
+  { label: 'Aaron Aaronson', value: 15, group: 'Caregivers' },
+  { label: 'John Johnson', value: 1, group: 'Caregivers' },
+  { label: 'Eric Ericsson', value: 1441, group: 'Clients' },
+  { label: 'Jacob Jacobson', value: 172, group: 'Clients' },
+  { label: 'Doc Docson', value: 1147, group: 'Doctors' },
+];
+
+
+Array.prototype.forEach = function () {
+  throw new Error('Array.forEach is not allowed!');
+};
+
+console.clear();
+const actual = transform(start);
+if (deepEqual(actual, expected)) {
+  console.log('pass!');
+} else {
+  console.error('fail...');
+  console.log('expected', expected);
+  console.log('actual', actual);
+}
+
+function deepEqual(a, b) {
+  try {
+  	if (!Array.isArray(a) || !Array.isArray(b)) return false;
+  	return a.length === b.length && a.every((v, i) =>
+    	b[i].label === v.label && 
+      b[i].value === v.value && 
+      b[i].group === v.group
+    );
+  } catch (err) {
+    return false;
+  }
+}
+
+
+</script>
+
+  
+<script>
+
+function transform(data) {
+  // TODO implement me
+  // NOTE: do not hardcode the group name. Assume the data structure could 
+  // have any number of groups.
+  var expected = [];
+
+  for (var key in data) {
+    if (data.hasOwnProperty(key)) {
+      var obj = data[key];
+      var tempObj = {};
+
+      for (j = 0; j < Object.keys(data[key]).length; j++) {
+        obj = data[key];
+        var k = Object.keys(data[key])[j];
+        for (var prop in obj[k]) {
+          if (obj[k].hasOwnProperty(prop)) {
+
+            if (prop == 'name') {
+              tempObj['label'] = obj[k][prop];
+              tempObj['group'] = key;
+            }
+
+            if (prop == 'id') {
+              tempObj['value'] = obj[k][prop];
+            }
+          }
+        }
+      }
+
+      expected.push(tempObj);
+      tempObj = {};
+    }
+  }
+} // have any number of groups.
+
+
+const start = {
+  Clients: {
+    171: { id: 171, name: 'John Smith', active: false },
+    172: { id: 172, name: 'Jacob Jacobson', active: true },
+    1441: { id: 1441, name: 'Eric Ericsson', active: true }
+  },
+  Caregivers: {
+    1: { id: 1, name: 'John Johnson', active: true },
+    37: { id: 37, name: 'James Jameson', active: false },
+    15: { id: 15, name: 'Aaron Aaronson', active: true }
+  },
+  Doctors: {
+    1147: { id: 1147, name: 'Doc Docson', active: true }
+  },
+  Hospitals: {
+    115: { id: 115, active: false, name: "St. Mary's" }
+  },
+  Applicants: {
+    17345: { id: 17345, name: 'Bob Bobson', active: true },
+    17346: { id: 17346, name: 'Jeff Jeffson', active: false },
+    17347: { id: 17347, name: 'Frank Frankson', active: true },
+    17348: { id: 17348, name: 'Bill Billson', active: true }
+  }
+};
+
+// Notice that the entries are sorted by group first, then label.
+// Notice also that active: false records are excluded.
+const expected = [{ label: 'Bill Billson', value: 17348, group: 'Applicants' }, { label: 'Bob Bobson', value: 17345, group: 'Applicants' }, { label: 'Frank Frankson', value: 17347, group: 'Applicants' }, { label: 'Aaron Aaronson', value: 15, group: 'Caregivers' }, { label: 'John Johnson', value: 1, group: 'Caregivers' }, { label: 'Eric Ericsson', value: 1441, group: 'Clients' }, { label: 'Jacob Jacobson', value: 172, group: 'Clients' }, { label: 'Doc Docson', value: 1147, group: 'Doctors' }];
+
+Array.prototype.forEach = function () {
+  throw new Error('Array.forEach is not allowed!');
+};
+
+console.clear();
+const actual = transform(start);
+if (deepEqual(actual, expected)) {
+  console.log('pass!');
+} else {
+  console.error('fail...');
+  console.log('expected', expected);
+  console.log('actual', actual);
+}
+
+function deepEqual(a, b) {
+  try {
+    if (!Array.isArray(a) || !Array.isArray(b)) return false;
+    return a.length === b.length && a.every((v, i) => b[i].label === v.label && b[i].value === v.value && b[i].group === v.group);
+  } catch (err) {
+    return false;
+  }
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIklubGluZSBCYWJlbCBzY3JpcHQiXSwibmFtZXMiOlsidHJhbnNmb3JtIiwiZGF0YSIsImV4cGVjdGVkIiwia2V5IiwiaGFzT3duUHJvcGVydHkiLCJvYmoiLCJ0ZW1wT2JqIiwiaiIsIk9iamVjdCIsImtleXMiLCJsZW5ndGgiLCJrIiwicHJvcCIsInB1c2giLCJzdGFydCIsIkNsaWVudHMiLCJpZCIsIm5hbWUiLCJhY3RpdmUiLCJDYXJlZ2l2ZXJzIiwiRG9jdG9ycyIsIkhvc3BpdGFscyIsIkFwcGxpY2FudHMiLCJsYWJlbCIsInZhbHVlIiwiZ3JvdXAiLCJBcnJheSIsInByb3RvdHlwZSIsImZvckVhY2giLCJFcnJvciIsImNvbnNvbGUiLCJjbGVhciIsImFjdHVhbCIsImRlZXBFcXVhbCIsImxvZyIsImVycm9yIiwiYSIsImIiLCJpc0FycmF5IiwiZXZlcnkiLCJ2IiwiaSIsImVyciJdLCJtYXBwaW5ncyI6Ijs7QUFNQSxTQUFTQSxTQUFULENBQW1CQyxJQUFuQixFQUF5QjtBQUN2QjtBQUNBO0FBQ0E7QUFDQSxNQUFJQyxXQUFXLEVBQWY7O0FBRUEsT0FBSyxJQUFJQyxHQUFULElBQWdCRixJQUFoQixFQUFzQjtBQUNyQixRQUFJQSxLQUFLRyxjQUFMLENBQW9CRCxHQUFwQixDQUFKLEVBQThCO0FBQzNCLFVBQUlFLE1BQU1KLEtBQUtFLEdBQUwsQ0FBVjtBQUNBLFVBQUlHLFVBQVUsRUFBZDs7QUFHQSxXQUFLQyxJQUFJLENBQVQsRUFBYUEsSUFBSUMsT0FBT0MsSUFBUCxDQUFZUixLQUFLRSxHQUFMLENBQVosRUFBdUJPLE1BQXhDLEVBQWlESCxHQUFqRCxFQUNBO0FBQ0FGLGNBQU1KLEtBQUtFLEdBQUwsQ0FBTjtBQUNBLFlBQUlRLElBQUlILE9BQU9DLElBQVAsQ0FBWVIsS0FBS0UsR0FBTCxDQUFaLEVBQXVCSSxDQUF2QixDQUFSO0FBQ0UsYUFBSyxJQUFJSyxJQUFULElBQWlCUCxJQUFJTSxDQUFKLENBQWpCLEVBQXlCO0FBQ3RCLGNBQUlO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QixZQUFZO0FBQ3BDLFFBQU0sSUFBSUMsS0FBSixDQUFVLCtCQUFWLENBQU47QUFDRCxDQUZEOztBQUlBQyxRQUFRQyxLQUFSO0FBQ0EsTUFBTUMsU0FBU2hDLFVBQVVjLEtBQVYsQ0FBZjtBQUNBLElBQUltQixVQUFVRCxNQUFWLEVBQWtCOUIsUUFBbEIsQ0FBSixFQUFpQztBQUMvQjRCLFVBQVFJLEdBQVIsQ0FBWSxPQUFaO0FBQ0QsQ0FGRCxNQUVPO0FBQ0xKLFVBQVFLLEtBQVIsQ0FBYyxTQUFkO0FBQ0FMLFVBQVFJLEdBQVIsQ0FBWSxVQUFaLEVBQXdCaEMsUUFBeEI7QUFDQTRCLFVBQVFJLEdBQVIsQ0FBWSxRQUFaLEVBQXNCRixNQUF0QjtBQUNEOztBQUVELFNBQVNDLFNBQVQsQ0FBbUJHLENBQW5CLEVBQXNCQyxDQUF0QixFQUF5QjtBQUN2QixNQUFJO0FBQ0gsUUFBSSxDQUFDWCxNQUFNWSxPQUFOLENBQWNGLENBQWQsQ0FBRCxJQUFxQixDQUFDVixNQUFNWSxPQUFOLENBQWNELENBQWQsQ0FBMUIsRUFBNEMsT0FBTyxLQUFQO0FBQzVDLFdBQU9ELEVBQUUxQixNQUFGLEtBQWEyQixFQUFFM0IsTUFBZixJQUF5QjBCLEVBQUVHLEtBQUYsQ0FBUSxDQUFDQyxDQUFELEVBQUlDLENBQUosS0FDdENKLEVBQUVJLENBQUYsRUFBS2xCLEtBQUwsS0FBZWlCLEVBQUVqQixLQUFqQixJQUNDYyxFQUFFSSxDQUFGLEVBQUtqQixLQUFMLEtBQWVnQixFQUFFaEIsS0FEbEIsSUFFQ2EsRUFBRUksQ0FBRixFQUFLaEIsS0FBTCxLQUFlZSxFQUFFZixLQUhZLENBQWhDO0FBS0EsR0FQRCxDQU9FLE9BQU9pQixHQUFQLEVBQVk7QUFDWixXQUFPLEtBQVA7QUFDRDtBQUNGIiwiZmlsZSI6IklubGluZSBCYWJlbCBzY3JpcHQiLCJzb3VyY2VzQ29udGVudCI6WyJcblxuXG5cblxuXG5mdW5jdGlvbiB0cmFuc2Zvcm0oZGF0YSkge1xuICAvLyBUT0RPIGltcGxlbWVudCBtZVxuICAvLyBOT1RFOiBkbyBub3QgaGFyZGNvZGUgdGhlIGdyb3VwIG5hbWUuIEFzc3VtZSB0aGUgZGF0YSBzdHJ1Y3R1cmUgY291bGQgXG4gIC8vIGhhdmUgYW55IG51bWJlciBvZiBncm91cHMuXG4gIHZhciBleHBlY3RlZCA9IFtdO1xuICBcbiAgZm9yICh2YXIga2V5IGluIGRhdGEpIHtcbiAgIGlmIChkYXRhLmhhc093blByb3BlcnR5KGtleSkpIHtcbiAgICAgIHZhciBvYmogPSBkYXRhW2tleV07XG4gICAgICB2YXIgdGVtcE9iaiA9IHt9O1xuICAgICBcbiAgICAgXG4gICAgICBmb3IoIGogPSAwIDsgaiA8IE9iamVjdC5rZXlzKGRhdGFba2V5XSkubGVuZ3RoIDsgaisrIClcbiAgICAgIHtcbiAgICAgIG9iaiA9IGRhdGFba2V5XTtcbiAgICAgIHZhciBrID0gT2JqZWN0LmtleXMoZGF0YVtrZXldKVtqXTtcbiAgICAgICAgZm9yICh2YXIgcHJvcCBpbiBvYmpba10pIHtcbiAgICAgICAgICAgaWYgKG9ialtrXS5oYXNPd25Qcm9wZXJ0eShwcm9wKSkge1xuXG4gICAgICAgICAgICAgICBpZihwcm9wID09J25hbWUnKVxuICAgICAgICAgICAgICAge1xuICAgICAgICAgICAgICAgIHRlbXBPYmpbJ2xhYmVsJ10gPSBvYmpba11bcHJvcF07XG4gICAgICAgICAgICAgdGVtcE9ialsnZ3JvdXAnXSA9IGtleTtcbiAgICAgICAgIFxuICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAgIGlmKHByb3AgPT0naWQnKVxuICAgICAgICAgICAgICAge1xuICAgICAgICAgICAgICAgICAgIHRlbXBPYmpbJ3ZhbHVlJ10gPSBvYmpba11bcHJvcF07IFxuICAgICAgICAgICAgICAgICAgICAgICAgXG5cbiAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgIFxuICAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cbiAgICAgXG4gICAgICBleHBlY3RlZC5wdXNoKHRlbXBPYmopO1xuICAgICAgICAgICAgICAgICB0ZW1wT2JqID0ge307XG5cbiAgIH1cbn1cblxuXG59Ly8gaGF2ZSBhbnkgbnVtYmVyIG9mIGdyb3Vwcy5cblxuXG5cbmNvbnN0IHN0YXJ0ID0ge1xuICBDbGllbnRzOiB7XG4gICAgMTcxOiB7IGlkOiAxNzEsIG5hbWU6ICdKb2huIFNtaXRoJywgYWN0aXZlOiBmYWxzZSB9LFxuICAgIDE3MjogeyBpZDogMTcyLCBuYW1lOiAnSmFjb2IgSmFjb2Jzb24nLCBhY3RpdmU6IHRydWUgfSxcbiAgICAxNDQxOiB7IGlkOiAxNDQxLCBuYW1lOiAnRXJpYyBFcmljc3NvbicsIGFjdGl2ZTogdHJ1ZSB9LFxuICB9LFxuICBDYXJlZ2l2ZXJzOiB7XG4gICAgMTogeyBpZDogMSwgbmFtZTogJ0pvaG4gSm9obnNvbicsIGFjdGl2ZTogdHJ1ZSB9LFxuICAgIDM3OiB7IGlkOiAzNywgbmFtZTogJ0phbWVzIEphbWVzb24nLCBhY3RpdmU6IGZhbHNlIH0sXG4gICAgMTU6IHsgaWQ6IDE1LCBuYW1lOiAnQWFyb24gQWFyb25zb24nLCBhY3RpdmU6IHRydWUgfSxcbiAgfSxcbiAgRG9jdG9yczoge1xuICAgIDExNDc6IHsgaWQ6IDExNDcsIG5hbWU6ICdEb2MgRG9jc29uJywgYWN0aXZlOiB0cnVlIH0sXG4gIH0sXG4gIEhvc3BpdGFsczoge1xuICAgIDExNTogeyBpZDogMTE1LCBhY3RpdmU6IGZhbHNlLCBuYW1lOiBcIlN0LiBNYXJ5J3NcIiB9LFxuICB9LFxuICBBcHBsaWNhbnRzOiB7XG4gICAgMTczNDU6IHsgaWQ6IDE3MzQ1LCBuYW1lOiAnQm9iIEJvYnNvbicsIGFjdGl2ZTogdHJ1ZSB9LFxuICAgIDE3MzQ2OiB7IGlkOiAxNzM0NiwgbmFtZTogJ0plZmYgSmVmZnNvbicsIGFjdGl2ZTogZmFsc2UgfSxcbiAgICAxNzM0NzogeyBpZDogMTczNDcsIG5hbWU6ICdGcmFuayBGcmFua3NvbicsIGFjdGl2ZTogdHJ1ZSB9LFxuICAgIDE3MzQ4OiB7IGlkOiAxNzM0OCwgbmFtZTogJ0JpbGwgQmlsbHNvbicsIGFjdGl2ZTogdHJ1ZSB9LFxuICB9LFxufTtcblxuLy8gTm90aWNlIHRoYXQgdGhlIGVudHJpZXMgYXJlIHNvcnRlZCBieSBncm91cCBmaXJzdCwgdGhlbiBsYWJlbC5cbi8vIE5vdGljZSBhbHNvIHRoYXQgYWN0aXZlOiBmYWxzZSByZWNvcmRzIGFyZSBleGNsdWRlZC5cbmNvbnN0IGV4cGVjdGVkID0gW1xuICB7IGxhYmVsOiAnQmlsbCBCaWxsc29uJywgdmFsdWU6IDE3MzQ4LCBncm91cDogJ0FwcGxpY2FudHMnIH0sXG4gIHsgbGFiZWw6ICdCb2IgQm9ic29uJywgdmFsdWU6IDE3MzQ1LCBncm91cDogJ0FwcGxpY2FudHMnIH0sXG4gIHsgbGFiZWw6ICdGcmFuayBGcmFua3NvbicsIHZhbHVlOiAxNzM0NywgZ3JvdXA6ICdBcHBsaWNhbnRzJyB9LFxuICB7IGxhYmVsOiAnQWFyb24gQWFyb25zb24nLCB2YWx1ZTogMTUsIGdyb3VwOiAnQ2FyZWdpdmVycycgfSxcbiAgeyBsYWJlbDogJ0pvaG4gSm9obnNvbicsIHZhbHVlOiAxLCBncm91cDogJ0NhcmVnaXZlcnMnIH0sXG4gIHsgbGFiZWw6ICdFcmljIEVyaWNzc29uJywgdmFsdWU6IDE0NDEsIGdyb3VwOiAnQ2xpZW50cycgfSxcbiAgeyBsYWJlbDogJ0phY29iIEphY29ic29uJywgdmFsdWU6IDE3MiwgZ3JvdXA6ICdDbGllbnRzJyB9LFxuICB7IGxhYmVsOiAnRG9jIERvY3NvbicsIHZhbHVlOiAxMTQ3LCBncm91cDogJ0RvY3RvcnMnIH0sXG5dO1xuXG5cbkFycmF5LnByb3RvdHlwZS5mb3JFYWNoID0gZnVuY3Rpb24gKCkge1xuICB0aHJvdyBuZXcgRXJyb3IoJ0FycmF5LmZvckVhY2ggaXMgbm90IGFsbG93ZWQhJyk7XG59O1xuXG5jb25zb2xlLmNsZWFyKCk7XG5jb25zdCBhY3R1YWwgPSB0cmFuc2Zvcm0oc3RhcnQpO1xuaWYgKGRlZXBFcXVhbChhY3R1YWwsIGV4cGVjdGVkKSkge1xuICBjb25zb2xlLmxvZygncGFzcyEnKTtcbn0gZWxzZSB7XG4gIGNvbnNvbGUuZXJyb3IoJ2ZhaWwuLi4nKTtcbiAgY29uc29sZS5sb2coJ2V4cGVjdGVkJywgZXhwZWN0ZWQpO1xuICBjb25zb2xlLmxvZygnYWN0dWFsJywgYWN0dWFsKTtcbn1cblxuZnVuY3Rpb24gZGVlcEVxdWFsKGEsIGIpIHtcbiAgdHJ5IHtcbiAgXHRpZiAoIUFycmF5LmlzQXJyYXkoYSkgfHwgIUFycmF5LmlzQXJyYXkoYikpIHJldHVybiBmYWxzZTtcbiAgXHRyZXR1cm4gYS5sZW5ndGggPT09IGIubGVuZ3RoICYmIGEuZXZlcnkoKHYsIGkpID0+XG4gICAgXHRiW2ldLmxhYmVsID09PSB2LmxhYmVsICYmIFxuICAgICAgYltpXS52YWx1ZSA9PT0gdi52YWx1ZSAmJiBcbiAgICAgIGJbaV0uZ3JvdXAgPT09IHYuZ3JvdXBcbiAgICApO1xuICB9IGNhdGNoIChlcnIpIHtcbiAgICByZXR1cm4gZmFsc2U7XG4gIH1cbn1cblxuXG4iXX0=</script></head>
+
+<body>
+  <p>
+Write a function that transforms the <code>start</code> data structure into the <code>expected</code> data structure. Your function should not modify the original data structure -- instead, it should return a new structure.
+</p>
+
+<p>
+Your solution will be judged using the following criteria:
+</p><ul>
+<li>correctness</li>
+<li>efficiency</li>
+<li>code quality</li>
+<li>code size</li>
+<li>copypasta (we only want to see YOUR code!)</li>
+</ul>
+<p></p>
+
+<p>
+We recommend spending 30 minutes on this problem.
+</p>
+
+<p>
+<b>Bonus:</b> Use only methods from <code>Object</code> and <code>Array</code> instead of <code>for</code> or <code>while</code> loops. <code>Array.forEach</code> is not allowed.
+</p>
+  
+  <script>
+  // tell the embed parent frame the height of the content
+  if (window.parent && window.parent.parent){
+    window.parent.parent.postMessage(["resultsFrame", {
+      height: document.body.getBoundingClientRect().height,
+      slug: "None"
+    }], "*")
+  }
+</script>
+
+
+
+
+
+</body></html>
